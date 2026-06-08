@@ -1,0 +1,176 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sample 11 · AI Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Newsreader:ital,opsz@1,6..72&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F1EEE8;--ink:#16181D;--soft:#615F66;--faint:#A6A29B;--line:#DED8CE;--accent:#6E5F66;--mig:#6D5BFF;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,"SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:#cfcfd2;display:flex;justify-content:center;padding:28px;color:var(--ink);}
+.phone{width:393px;height:852px;background:var(--paper);border-radius:46px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.12),0 30px 80px rgba(0,0,0,.35);display:flex;flex-direction:column;position:relative;}
+.grain{position:absolute;inset:0;pointer-events:none;z-index:40;opacity:.045;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+.statusbar{height:48px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 5px;font-weight:600;font-size:15px;z-index:20;}
+.scroll{flex:1;overflow-y:auto;}.scroll::-webkit-scrollbar{display:none;}
+
+/* masthead */
+.mast{padding:14px 22px 4px;position:relative;}
+.mast .year{position:absolute;top:8px;right:14px;font-family:"Playfair Display",serif;font-weight:800;font-size:74px;color:rgba(22,24,29,.07);letter-spacing:-3px;line-height:1;}
+.kick{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;font-weight:700;color:var(--accent);}
+.mast h1{font-family:"Playfair Display",serif;font-weight:800;font-size:46px;line-height:.98;letter-spacing:-1px;margin-top:12px;color:var(--ink);}
+.mast .sf{font-size:14px;line-height:1.55;color:var(--soft);margin-top:14px;max-width:330px;}
+.mast .sf b{color:var(--ink);font-weight:600;}
+.mast .by{display:flex;align-items:center;gap:10px;margin-top:16px;}
+.mast .by .stk{display:flex;}
+.mast .by .stk img{width:26px;height:26px;border-radius:50%;border:2px solid var(--paper);object-fit:cover;margin-left:-8px;filter:grayscale(.3);}
+.mast .by .stk img:first-child{margin-left:0;}
+.mast .by .t{font-size:11px;color:var(--faint);letter-spacing:.2px;}
+.mast .by .t b{color:var(--soft);font-weight:600;}
+
+/* cover story */
+.cover{position:relative;height:320px;margin-top:18px;overflow:hidden;}
+.cover img{width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(.62) brightness(.78);}
+.cover .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,14,20,.2) 0%,rgba(12,14,20,0) 30%,rgba(12,14,20,.82) 100%);}
+.cover .cc{position:absolute;left:22px;right:22px;bottom:22px;color:#fff;}
+.cover .ck{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;font-weight:700;opacity:.92;}
+.cover h2{font-family:"Playfair Display",serif;font-weight:700;font-size:32px;line-height:1.05;letter-spacing:-.5px;margin-top:10px;}
+.cover .dek{font-size:12.5px;line-height:1.5;opacity:.9;margin-top:9px;max-width:300px;}
+
+/* story */
+.story{padding:28px 22px 0;}
+.story .lab{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--accent);}
+.story h3{font-family:"Playfair Display",serif;font-weight:700;font-size:24px;line-height:1.12;letter-spacing:-.4px;margin-top:7px;}
+.story p{font-size:15px;line-height:1.62;color:var(--ink);margin-top:13px;}
+.story p.soft{color:var(--soft);}
+.who{cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:1px;}
+.quote{font-family:"Playfair Display",serif;font-weight:600;font-style:normal;font-size:23px;line-height:1.28;letter-spacing:-.3px;color:var(--ink);padding:20px 4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:22px 0 6px;}
+.fig{margin:22px -22px 0;height:200px;overflow:hidden;}
+.fig img{width:100%;height:100%;object-fit:cover;filter:contrast(1.06) saturate(.6) brightness(.82);}
+.fig .cap{font-size:10px;color:var(--faint);padding:7px 22px 0;letter-spacing:.3px;text-transform:uppercase;}
+.rule{height:1px;background:var(--line);margin:26px 22px 0;}
+
+/* watch box */
+.watch{margin:26px 22px 0;border-top:2px solid var(--ink);padding-top:13px;}
+.watch .l{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:var(--ink);}
+.watch ul{list-style:none;margin-top:10px;}
+.watch li{font-size:13.5px;line-height:1.5;color:var(--ink);padding-left:20px;position:relative;margin-bottom:8px;}
+.watch li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700;}
+
+/* voices */
+.voices{padding:30px 0 6px;}
+.voices .l{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--faint);padding:0 22px 14px;}
+.vtrack{display:flex;gap:14px;overflow-x:auto;padding:0 22px 10px;}
+.vtrack::-webkit-scrollbar{display:none;}
+.vc{flex:0 0 120px;cursor:pointer;}
+.vc img{width:120px;height:140px;object-fit:cover;object-position:center top;filter:grayscale(.35) contrast(1.05);}
+.vc .vn{font-family:"Playfair Display",serif;font-weight:600;font-size:14.5px;margin-top:9px;line-height:1.1;}
+.vc .vp{font-size:10.5px;color:var(--faint);margin-top:3px;}
+.vc .vo{font-size:11.5px;color:var(--soft);line-height:1.4;margin-top:6px;}
+
+.foot{padding:26px 22px 30px;font-size:11px;color:var(--faint);line-height:1.6;letter-spacing:.2px;}
+.foot b{color:var(--soft);}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+.toast{position:absolute;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);background:var(--ink);color:var(--paper);font-size:12.5px;font-weight:500;padding:11px 16px;border-radius:10px;opacity:0;transition:.3s;z-index:60;max-width:320px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.35);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.homebar{height:22px;flex:none;display:flex;align-items:center;justify-content:center;}
+.homebar i{width:128px;height:5px;border-radius:3px;background:var(--ink);opacity:.16;}
+.nav{position:absolute;top:48px;left:14px;z-index:30;}
+.nav a{font-size:22px;color:var(--ink);text-decoration:none;}
+</style>
+</head><body>
+<div class="phone">
+  <div class="grain"></div>
+  <div class="statusbar"><span>9:41</span><span style="font-size:13px">▮▮▮ ▢ 100</span></div>
+  <div class="nav"><a href="index.html">‹</a></div>
+
+  <div class="scroll">
+    <!-- MASTHEAD -->
+    <div class="mast">
+      <div class="year">2026</div>
+      <div class="kick">AI Review · Last 72 hours</div>
+      <h1>AI gets<br>political.</h1>
+      <p class="sf">The latest wave of AI news feels less like Silicon Valley product theatre and <b>more like infrastructure, defence and statecraft.</b></p>
+      <div class="by">
+        <div class="stk">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/250px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg/250px-Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg/250px-Fei-Fei_Li_at_AI_for_Good_2017.jpg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Andrej_Karpathy%2C_OpenAI.png/250px-Andrej_Karpathy%2C_OpenAI.png">
+        </div>
+        <div class="t">Compiled from <b>the 6 voices you follow</b> · ~3 min</div>
+      </div>
+    </div>
+
+    <!-- COVER STORY -->
+    <div class="cover reveal">
+      <img src="https://images.unsplash.com/photo-1592659762303-90081d34b277?w=900&q=80&auto=format&fit=crop" alt="">
+      <div class="ov"></div>
+      <div class="cc">
+        <div class="ck">Cover story</div>
+        <h2>The infrastructure<br>era has begun.</h2>
+        <div class="dek">This week the story stopped being about apps. It became about who controls the compute, the chips, and the rules.</div>
+      </div>
+    </div>
+
+    <!-- STORY 1 -->
+    <div class="story">
+      <div class="lab reveal">Silicon &amp; sovereignty</div>
+      <h3 class="reveal">The chip map is the world map</h3>
+      <p class="reveal">Export controls and home-grown silicon dominated the feeds. <span class="who" data-p="ng">Andrew Ng</span> argued that for the next two years <b>policy, not capability</b>, will decide who leads — and that every government is now treating compute as critical infrastructure.</p>
+      <div class="quote reveal">The bottleneck moved from ideas to permission.</div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story">
+      <div class="lab reveal">Compute</div>
+      <h3 class="reveal">Power is the bottleneck now</h3>
+      <div class="fig reveal"><img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?w=900&q=80&auto=format&fit=crop" alt=""><div class="cap">Megawatts, not model size</div></div>
+      <p class="reveal"><span class="who" data-p="sam">Sam Altman</span>'s "something's coming" turned out to point at plumbing: datacentres, energy deals, and the unglamorous backbone of intelligence. The conversation has quietly shifted from parameters to <b>megawatts</b>.</p>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story">
+      <div class="lab reveal">Counter-current</div>
+      <h3 class="reveal">Meanwhile, the builders kept building</h3>
+      <p class="reveal soft">Under the statecraft, the craft continued. <span class="who" data-p="karpathy">Karpathy</span> shipped a four-hour, from-scratch LLM tutorial; <span class="who" data-p="feifei">Fei-Fei Li</span> kept insisting models must understand the physical world; <span class="who" data-p="simon">Simon Willison</span> rounded up the tools that actually work today. A reminder that progress hides under the noise.</p>
+    </div>
+
+    <div class="watch reveal">
+      <div class="l">What to watch</div>
+      <ul>
+        <li>Export-control hearings and who gets carved out</li>
+        <li>The next datacentre + energy deal</li>
+        <li>Whoever ships the next small-but-capable model</li>
+      </ul>
+    </div>
+
+    <!-- VOICES -->
+    <div class="voices reveal">
+      <div class="l">Voices this issue</div>
+      <div class="vtrack" id="voices"></div>
+    </div>
+
+    <div class="foot reveal"><b>Compiled by Migoo</b> from the AI voices you follow. 72 hours, read in three minutes. Tap a name for the original.</div>
+    <div class="homebar"><i></i></div>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+var W="https://upload.wikimedia.org/wikipedia/commons/thumb/";
+var PPL={
+  ng:{nm:'Andrew Ng',pf:'LinkedIn',ot:'Policy, not capability, decides the next two years',img:W+'2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg/250px-Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg'},
+  sam:{nm:'Sam Altman',pf:'X',ot:'"Something\'s coming" — it was infrastructure',img:W+'f/f8/Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg/250px-Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped_3%29.jpg'},
+  feifei:{nm:'Fei-Fei Li',pf:'LinkedIn',ot:'Models must understand the physical world',img:W+'c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg/250px-Fei-Fei_Li_at_AI_for_Good_2017.jpg'},
+  karpathy:{nm:'Andrej Karpathy',pf:'X',ot:'Shipped a 4-hour from-scratch LLM tutorial',img:W+'c/c0/Andrej_Karpathy%2C_OpenAI.png/250px-Andrej_Karpathy%2C_OpenAI.png'},
+  simon:{nm:'Simon Willison',pf:'X',ot:'The 10 CLI AI tools that actually work',img:W+'6/6c/Simon_Willison_%282929211382%29_%28cropped%29.jpg/250px-Simon_Willison_%282929211382%29_%28cropped%29.jpg'}
+};
+document.getElementById('voices').innerHTML=Object.keys(PPL).map(function(k){var p=PPL[k];
+  return '<div class="vc" data-p="'+k+'"><img src="'+p.img+'"><div class="vn">'+p.nm+'</div><div class="vp">'+p.pf+'</div><div class="vo">'+p.ot+'</div></div>';
+}).join('');
+document.addEventListener('click',function(e){var w=e.target.closest('.who,.vc');if(!w)return;var p=PPL[w.dataset.p];if(p)toast(p.nm+' · '+p.pf+': '+p.ot);});
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>el.classList.remove('show'),2800);}
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.1,root:document.querySelector('.scroll')});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body></html>
