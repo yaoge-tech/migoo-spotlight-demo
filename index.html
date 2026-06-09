@@ -2079,10 +2079,10 @@ function _csHydratePreconnected(){
 }
 /* First-run onboarding: open connect sheet automatically and mark as seen on close */
 function _csMaybeAutoOpen(){
-  try{
-    if(localStorage.getItem('migoo_onboarded')) return;
-    setTimeout(()=>{ openConnectSheet({onboarding:true}); _csHydratePreconnected(); }, 400);
-  }catch(e){}
+  /* Public demo: always show first-time onboarding on fresh page load.
+     The demo toggle can flip to Returning state mid-session for showcase. */
+  try{ localStorage.removeItem('migoo_onboarded'); }catch(e){}
+  setTimeout(()=>{ openConnectSheet({onboarding:true}); _csHydratePreconnected(); }, 400);
 }
 (function(){
   /* Stories rail: ensure every avatar (except the Connect tile) has a purple "update" dot,
